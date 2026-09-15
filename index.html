@@ -124,7 +124,19 @@
   .btn-primary:hover{background:#0D50C5;}
   .btn-ghost{color:var(--ink);border-color:var(--line);}
   .btn-ghost:hover{border-color:var(--brass);color:var(--brass);}
-
+.explore-block{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+}
+.explore-text{
+  font-family:'Bebas Neue';
+  font-size:clamp(32px,4vw,44px);
+  color:var(--ink);
+  max-width:600px;
+}
   .frame{
     position:relative;
     aspect-ratio:4/5;
@@ -366,64 +378,12 @@
       <div class="section-head">
         <h2>How a project<br>moves</h2>
         <p>The workflow every commercial or corporate edit goes through, start to delivery.</p>
-      </div>
-      <div class="workflow-list">
-        <div class="wf-row"><div class="n">01</div><h3>Brief & footage review</h3><p>Understanding the brand, the goal, and what the raw footage actually gives me to work with.</p></div>
-        <div class="wf-row"><div class="n">02</div><h3>Story assembly</h3><p>A rough cut built around the strongest moments and a clear beginning, middle, and end.</p></div>
-        <div class="wf-row"><div class="n">03</div><h3>Fine cut & motion graphics</h3><p>Tightening pace, adding titles, lower-thirds, and any graphics the brand needs.</p></div>
-        <div class="wf-row"><div class="n">04</div><h3>Color & sound</h3><p>Grading for brand consistency and mixing music, VO, and sound design into one clean track.</p></div>
-        <div class="wf-row"><div class="n">05</div><h3>Delivery</h3><p>Exporting in every format and aspect ratio the campaign needs, with revisions included.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Selected<br>work</h2>
-       
-      </div>
-      <div class="reel">
-
-        <div class="reel-card">
-          <div class="video-slot">
-            <!-- SWAP: replace this div with an iframe embed of your video, e.g.
-                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
-            <div class="swap-tag"><b>Project 01</b>Paste your video embed link here</div>
-          </div>
-          <div class="meta">
-            <span class="tag">Commercial · 30s</span>
-            <h3>Client name — campaign title</h3>
-            <p>One line on the brief: what the spot was for and where it ran.</p>
-          </div>
-        </div>
-
-        <div class="reel-card">
-          <div class="video-slot">
-            <div class="swap-tag"><b>Project 02</b>Paste your video embed link here</div>
-          </div>
-          <div class="meta">
-            <span class="tag">Corporate film</span>
-            <h3>Client name — campaign title</h3>
-            <p>One line on the brief: what the spot was for and where it ran.</p>
-          </div>
-        </div>
-
-        <div class="reel-card">
-          <div class="video-slot">
-            <div class="swap-tag"><b>Project 03</b>Paste your video embed link here</div>
-          </div>
-          <div class="meta">
-            <span class="tag">Product ad</span>
-            <h3>Client name — campaign title</h3>
-            <p>One line on the brief: what the spot was for and where it ran.</p>
-          </div>
-        </div>
-
-        <div class="reel-card">
-          <div class="video-slot">
-            <div class="swap-tag"><b>Project 04</b>Paste your video embed link here</div>
-          </div>
+      <section id="work">
+  <div class="wrap explore-block">
+    <p class="explore-text">Explore some of my sample works and see what I can do.</p>
+    <a href="#" class="btn btn-primary">See my work</a>
+  </div>
+</section>
           <div class="meta">
             <span class="tag">Brand film</span>
             <h3>Client name — campaign title</h3>
