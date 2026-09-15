@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FASAMI — Corporate & Commercial Video Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121214;
+    --bg-2:#1a1a1c;
+    --paper:#F4EFE4;
+    --paper-2:#ece5d4;
+    --ink:#EDEAE2;
+    --ink-dim:#a8a59c;
+    --ink-dark:#17160f;
+    --ink-dark-dim:#5a5748;
+    --brass:#3078F2;
+    --brass-dim:#0D50C5;
+    --teal:#2E4A45;
+    --line:#31312f;
+    --line-light:#d8d0bc;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    width:100%;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue',sans-serif;
+    font-weight:400;
+    letter-spacing:0.5px;
+    line-height:0.95;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  @media(max-width:700px){.wrap{padding:0 22px;}}
+
+  /* ===== nav ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(18,18,20,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .logo{font-family:'Bebas Neue';font-size:28px;letter-spacing:1px;color:var(--ink);}
+  .logo span{color:var(--brass);}
+  .navlinks{display:flex;gap:38px;font-size:14px;color:var(--ink-dim);}
+  .navlinks a:hover{color:var(--brass);}
+  .nav-cta{
+    border:1px solid var(--brass);color:var(--brass);
+    padding:9px 20px;font-size:13px;
+  }
+  .nav-cta:hover{background:var(--brass);color:var(--ink-dark);}
+  .menu-btn{display:none;background:none;border:none;color:var(--ink);font-size:26px;cursor:pointer;}
+  @media(max-width:820px){
+    .navlinks{position:fixed;top:76px;left:0;right:0;background:var(--bg-2);flex-direction:column;padding:26px 22px;gap:20px;border-bottom:1px solid var(--line);display:none;}
+    .navlinks.open{display:flex;}
+    .nav-cta{display:none;}
+    .menu-btn{display:block;}
+  }
+
+  /* ===== hero ===== */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:60px;
+    align-items:center;
+  }
+  @media(max-width:900px){
+    .hero{padding:52px 0 50px;}
+    .hero .wrap{grid-template-columns:1fr;gap:40px;}
+    .hero .frame{max-width:420px;margin:0 auto;aspect-ratio:1/1;}
+    .hero p.lede{max-width:none;}
+  }
+  @media(max-width:480px){
+    .hero{padding:40px 0 40px;}
+    .btn{width:100%;text-align:center;}
+    .btn-row{flex-direction:column;}
+  }
+  .kicker{
+    font-size:14px;color:var(--brass);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:22px;
+  }
+  .kicker::before{content:"";width:28px;height:1px;background:var(--brass);display:inline-block;}
+  .hero h1{
+    font-size:clamp(52px,7vw,96px);
+    color:var(--ink);
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--brass);}
+  .hero p.lede{
+    font-size:18px;color:var(--ink-dim);max-width:480px;margin-bottom:34px;
+  }
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:15px 30px;font-size:14px;
+    border:1px solid var(--brass);
+  }
+  .btn-primary{background:var(--brass);color:var(--ink-dark);}
+  .btn-primary:hover{background:#0D50C5;}
+  .btn-ghost{color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass);}
+
+  .frame{
+    position:relative;
+    aspect-ratio:4/5;
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .frame .plate{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(160deg,#232320 0%, #17171a 60%, #0e0e10 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .frame .plate::after{
+    content:"REEL";
+    font-family:'Bebas Neue';
+    font-size:15vw;
+    color:rgba(255,255,255,0.045);
+    letter-spacing:4px;
+  }
+  .frame .playbtn{
+    position:absolute;width:64px;height:64px;border-radius:50%;
+    border:1px solid var(--brass);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;background:rgba(18,18,20,0.5);
+  }
+  .frame .playbtn::before{
+    content:"";width:0;height:0;
+    border-top:9px solid transparent;border-bottom:9px solid transparent;
+    border-left:14px solid var(--brass);margin-left:4px;
+  }
+  .frame .timecode{
+    position:absolute;bottom:16px;left:16px;right:16px;
+    display:flex;justify-content:space-between;
+    font-size:12px;color:var(--ink-dim);letter-spacing:1px;
+    font-variant-numeric:tabular-nums;
+  }
+  .frame .rec{
+    position:absolute;top:16px;left:16px;
+    font-size:11px;color:#e0645a;display:flex;align-items:center;gap:6px;letter-spacing:1px;
+  }
+  .frame .rec::before{content:"";width:7px;height:7px;border-radius:50%;background:#e0645a;}
+
+  /* ===== marquee strip ===== */
+  .strip{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:22px 0;overflow:hidden;white-space:nowrap;
+  }
+  .strip-track{display:inline-flex;gap:60px;animation:scroll 26s linear infinite;}
+  .strip-track span{font-family:'Bebas Neue';font-size:20px;color:var(--ink-dim);letter-spacing:2px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){.strip-track{animation:none;}}
+
+  /* ===== section shared ===== */
+  section{padding:110px 0;}
+  .section-head{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    margin-bottom:60px;align-items:end;
+  }
+  .section-head h2{font-size:clamp(38px,5vw,58px);}
+  .section-head p{color:var(--ink-dim);font-size:16px;max-width:420px;}
+  @media(max-width:760px){.section-head{grid-template-columns:1fr;}}
+  @media(max-width:900px){section{padding:70px 0;}}
+  @media(max-width:480px){section{padding:54px 0;}.section-head{margin-bottom:40px;}}
+
+  /* ===== about (paper section) ===== */
+  .about{background:var(--paper);color:var(--ink-dark);}
+  .about .section-head p{color:var(--ink-dark-dim);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-photo{
+    aspect-ratio:3/4;background:var(--bg);
+    border:1px solid var(--paper-2);
+  }
+  .about-photo .plate{
+    width:100%;height:100%;
+    background:linear-gradient(150deg,#2a2a26,#121214);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue';color:rgba(255,255,255,0.06);font-size:80px;
+  }
+  .about-copy p{margin-bottom:20px;font-size:16.5px;color:var(--ink-dark-dim);max-width:560px;}
+  .about-copy strong{color:var(--ink-dark);font-weight:600;}
+  .stat-row{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:0;margin-top:46px;border-top:1px solid var(--line-light);
+  }
+  .stat{padding:22px 0 0;border-right:1px solid var(--line-light);}
+  .stat:last-child{border-right:none;}
+  .stat b{font-family:'Bebas Neue';font-size:42px;display:block;color:var(--brass-dim);}
+  .stat span{font-size:13px;color:var(--ink-dark-dim);}
+
+  /* ===== workflow (numbered — legit sequence) ===== */
+  .workflow-list{border-top:1px solid var(--line);}
+  .wf-row{
+    display:grid;grid-template-columns:70px 220px 1fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .wf-row .n{font-family:'Bebas Neue';font-size:20px;color:var(--brass);}
+  .wf-row h3{font-family:'Work Sans';font-weight:600;font-size:18px;color:var(--ink);}
+  .wf-row p{font-size:15px;color:var(--ink-dim);}
+  @media(max-width:900px){.wf-row{grid-template-columns:50px 170px 1fr;}}
+  @media(max-width:700px){.wf-row{grid-template-columns:40px 1fr;row-gap:6px;}.wf-row h3{grid-column:2;}.wf-row p{grid-column:2;}}
+  @media(max-width:480px){.stat-row{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--line-light);padding-bottom:18px;}.stat:last-child{border-bottom:none;}}
+
+  /* ===== portfolio (dark, film-strip reel) ===== */
+  .reel{
+    display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .reel::-webkit-scrollbar{height:5px;}
+  .reel::-webkit-scrollbar-thumb{background:var(--line);}
+  .reel-card{
+    flex:0 0 380px;scroll-snap-align:start;
+    border:1px solid var(--line);background:var(--bg-2);
+  }
+  @media(max-width:700px){.reel-card{flex-basis:82vw;}}
+  @media(max-width:420px){.reel-card{flex-basis:88vw;}}
+  .reel-card .video-slot{
+    aspect-ratio:16/9;position:relative;overflow:hidden;background:#0d0d0e;
+    border-bottom:1px solid var(--line);
+  }
+  .reel-card .video-slot iframe{width:100%;height:100%;border:0;}
+  .reel-card .video-slot .swap-tag{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:10px;color:var(--ink-dim);font-size:12px;text-align:center;padding:20px;
+    background:linear-gradient(150deg,#232320,#111112);
+  }
+  .reel-card .video-slot .swap-tag b{color:var(--brass);font-family:'Bebas Neue';font-size:22px;font-weight:400;letter-spacing:1px;}
+  .reel-card .meta{padding:22px 24px 26px;}
+  .reel-card .meta .tag{font-size:12px;color:var(--brass);letter-spacing:1px;margin-bottom:8px;display:block;}
+  .reel-card .meta h3{font-family:'Work Sans';font-weight:600;font-size:18px;margin-bottom:6px;color:var(--ink);}
+  .reel-card .meta p{font-size:14px;color:var(--ink-dim);}
+  .reel-hint{font-size:13px;color:var(--ink-dim);margin-top:14px;}
+
+  /* ===== services / skills ===== */
+  .skills{background:var(--bg-2);}
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-cell{background:var(--bg-2);padding:38px 34px;}
+  .skill-cell h3{font-family:'Work Sans';font-weight:600;font-size:19px;margin-bottom:10px;color:var(--ink);}
+  .skill-cell p{font-size:14.5px;color:var(--ink-dim);}
+
+  /* ===== testimonial / contact cta ===== */
+  .cta{
+    text-align:left;
+  }
+  .cta h2{font-size:clamp(40px,6vw,80px);max-width:820px;margin-bottom:34px;}
+  .cta .btn-row{margin-bottom:0;}
+  .contact-block{
+    margin-top:80px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;
+    border-top:1px solid var(--line);padding-top:46px;
+  }
+  @media(max-width:760px){.contact-block{grid-template-columns:1fr;}}
+  .contact-block h4{font-size:12px;letter-spacing:1px;color:var(--ink-dim);margin-bottom:12px;}
+  .contact-block a,.contact-block p{font-size:17px;color:var(--ink);}
+  .contact-block a:hover{color:var(--brass);}
+
+  footer{
+    border-top:1px solid var(--line);padding:34px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:13px;color:var(--ink-dim);
+  }
+  @media(max-width:600px){footer{flex-direction:column;gap:10px;text-align:center;}}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">FA<span>SAMI</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a project</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="kicker">Corporate & commercial video editor</div>
+        <h1>Cuts that make<br><em>brands</em> move.</h1>
+        <p class="lede">I'm Farhan Anjum Sami, an editor for corporate films and commercial ads — turning raw footage into fast, confident stories that sell without feeling like a sales pitch.</p>
+        <div class="btn-row">
+          <a href="#work" class="btn btn-primary">View the reel</a>
+          <a href="#contact" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="plate"></div>
+        <div class="rec">Showreel</div>
+        <div class="playbtn"></div>
+        <div class="timecode"><span>00:00:00</span><span>02:14:30</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-track">
+      <span>Premiere Pro</span><span>DaVinci Resolve</span><span>FILMORA</span><span>Motion Graphics</span><span>Color Grading</span><span>Sound Design</span>
+      <span>Premiere Pro</span><span>DaVinci Resolve</span><span>FILMORA</span><span>Motion Graphics</span><span>Color Grading</span><span>Sound Design</span>
+    </div>
+  </div>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Who's cutting<br>your story</h2>
+        <p>A short introduction — the kind you'd get on a first call, not a resume.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo"><div class="plate">F3</div></div>
+        <div class="about-copy">
+          <p>I'm <strong>FASAMIII</strong>, a video editor working with brands and agencies on corporate films and commercial ads. My job starts where the footage ends — finding the story buried in hours of raw clips and cutting it down to something that actually holds attention.</p>
+          <p>I work fast without cutting corners: clean pacing, motion graphics that support the message instead of decorating it, color grading that matches the brand, and sound design that carries the emotional weight most edits skip.</p>
+          <p>Every brief is different, so every cut is built from scratch for the client, the platform, and the fifteen seconds you actually have before someone scrolls past.</p>
+          <div class="stat-row">
+            <div class="stat"><b>40+</b><span>Brand & commercial projects</span></div>
+            <div class="stat"><b>48h</b><span>Typical turnaround on short-form</span></div>
+            <div class="stat"><b>3</b><span>NLEs fluent — Premiere, Resolve, AE</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How a project<br>moves</h2>
+        <p>The workflow every commercial or corporate edit goes through, start to delivery.</p>
+      </div>
+      <div class="workflow-list">
+        <div class="wf-row"><div class="n">01</div><h3>Brief & footage review</h3><p>Understanding the brand, the goal, and what the raw footage actually gives me to work with.</p></div>
+        <div class="wf-row"><div class="n">02</div><h3>Story assembly</h3><p>A rough cut built around the strongest moments and a clear beginning, middle, and end.</p></div>
+        <div class="wf-row"><div class="n">03</div><h3>Fine cut & motion graphics</h3><p>Tightening pace, adding titles, lower-thirds, and any graphics the brand needs.</p></div>
+        <div class="wf-row"><div class="n">04</div><h3>Color & sound</h3><p>Grading for brand consistency and mixing music, VO, and sound design into one clean track.</p></div>
+        <div class="wf-row"><div class="n">05</div><h3>Delivery</h3><p>Exporting in every format and aspect ratio the campaign needs, with revisions included.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected<br>work</h2>
+        <p>A running reel of commercial and corporate edits. Swap in your own links — see note below.</p>
+      </div>
+      <div class="reel">
+
+        <div class="reel-card">
+          <div class="video-slot">
+            <!-- SWAP: replace this div with an iframe embed of your video, e.g.
+                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+            <div class="swap-tag"><b>Project 01</b>Paste your video embed link here</div>
+          </div>
+          <div class="meta">
+            <span class="tag">Commercial · 30s</span>
+            <h3>Client name — campaign title</h3>
+            <p>One line on the brief: what the spot was for and where it ran.</p>
+          </div>
+        </div>
+
+        <div class="reel-card">
+          <div class="video-slot">
+            <div class="swap-tag"><b>Project 02</b>Paste your video embed link here</div>
+          </div>
+          <div class="meta">
+            <span class="tag">Corporate film</span>
+            <h3>Client name — campaign title</h3>
+            <p>One line on the brief: what the spot was for and where it ran.</p>
+          </div>
+        </div>
+
+        <div class="reel-card">
+          <div class="video-slot">
+            <div class="swap-tag"><b>Project 03</b>Paste your video embed link here</div>
+          </div>
+          <div class="meta">
+            <span class="tag">Product ad</span>
+            <h3>Client name — campaign title</h3>
+            <p>One line on the brief: what the spot was for and where it ran.</p>
+          </div>
+        </div>
+
+        <div class="reel-card">
+          <div class="video-slot">
+            <div class="swap-tag"><b>Project 04</b>Paste your video embed link here</div>
+          </div>
+          <div class="meta">
+            <span class="tag">Brand film</span>
+            <h3>Client name — campaign title</h3>
+            <p>One line on the brief: what the spot was for and where it ran.</p>
+          </div>
+        </div>
+
+      </div>
+      <p class="reel-hint">Scroll to see more &rarr; Each card is a placeholder slot — send me your real links and titles and I'll drop them straight in.</p>
+    </div>
+  </section>
+
+  <section class="skills" id="skillsgrid">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I<br>handle</h2>
+        <p>The full edit, not just the timeline.</p>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-cell"><h3>Narrative editing</h3><p>Structuring interviews and B-roll into a story that keeps the message clear and the pace tight.</p></div>
+        <div class="skill-cell"><h3>Motion graphics</h3><p>Titles, lower-thirds, and animated brand elements built to match existing guidelines.</p></div>
+        <div class="skill-cell"><h3>Color grading</h3><p>Consistent, on-brand color across every shot and every camera it was filmed on.</p></div>
+        <div class="skill-cell"><h3>Sound design & mix</h3><p>Music selection, voiceover cleanup, and a final mix that sounds right on any device.</p></div>
+        <div class="skill-cell"><h3>Multi-format delivery</h3><p>Square, vertical, and widescreen cuts of the same spot for every platform it needs to live on.</p></div>
+        <div class="skill-cell"><h3>Fast revisions</h3><p>Clear version tracking and quick turnarounds when feedback comes in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2>Got footage that needs<br>a story? Let's cut it.</h2>
+      <div class="btn-row">
+        <a href="mailto:fasamicreates@gmail.com" class="btn btn-primary">Email fasamicreates@gmail.com</a>
+        <a href="#" class="btn btn-ghost">Download rate card</a>
+      </div>
+
+      <div class="contact-block">
+        <div>
+          <h4>EMAIL</h4>
+          <a href="mailto:fasamicreates@gmail.com">fasamicreates@gmail.com</a>
+        </div>
+        <div>
+          <h4>SOCIAL</h4>
+          <p><a href="https://www.instagram.com/fasam_iii/">Instagram</a> &middot; <a href="https://wa.me/1748102990">Whatsapp</a> &middot; <a href="https://www.linkedin.com/in/fasamiii/">LinkedIn</a></p>
+        </div>
+        <div>
+          <h4>BASED IN</h4>
+          <p>Available for remote projects worldwide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;">
+    <span>&copy; 2026 FASAMIII</span>
+    <span>Video editor — corporate & commercial</span>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  const reveals = document.querySelectorAll('.reel-card, .skill-cell, .wf-row, .stat');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+
+</body>
+</html>
