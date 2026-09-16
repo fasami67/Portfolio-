@@ -138,7 +138,12 @@
     color:var(--ink);
     max-width:600px;
   }
-
+  .frame-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  }
   .frame{
     position:relative;
     aspect-ratio:4/5;
@@ -338,12 +343,8 @@
         </div>
       </div>
       <div class="frame">
-        <div class="plate"><img src="fas.png" alt="FASAMIII" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="rec">Showreel</div>
-        <div class="playbtn"></div>
-        <div class="timecode"><span>00:00:00</span><span>02:14:30</span></div>
+        <img src="your-image.jpg" class="frame-img" alt="Showreel promo">
       </div>
-    </div>
   </section>
 
   <div class="strip">
